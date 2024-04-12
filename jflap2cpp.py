@@ -1,6 +1,6 @@
 import os
 import sys
-import xml.etree.ElementTree as ET
+import defusedxml.ElementTree
 
 #to make state machines a little less redundant you can use these special chars to shorthand entire sets of input
 charsets = {
@@ -236,7 +236,7 @@ def main():
     if(not os.path.exists(inputpath)):
         print("{} file does not exist. exiting.".format(sys.argv[1]))
         exit(-1)
-    jfftree = ET.parse(inputpath)
+    jfftree = defusedxml.ElementTree.parse(inputpath)
     jffroot = jfftree.getroot()
     states = {}
     if(jffroot.find('type').text != 'fa'):
